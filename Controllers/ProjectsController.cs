@@ -52,7 +52,7 @@ namespace AIPoweredSoftwareDevelopment.Controllers
         // POST: Projects/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,RepositoryUrl,Technology")] Project project)
+        public async Task<IActionResult> Create(Project project)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +61,16 @@ namespace AIPoweredSoftwareDevelopment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
+            // Log validation errors for debugging
+            foreach (var modelState in ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Validation Error: {error.ErrorMessage}");
+                }
+            }
+            
             return View(project);
         }
 
