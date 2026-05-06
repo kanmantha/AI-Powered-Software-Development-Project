@@ -1,0 +1,120 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww]in32/
+[Aa][Rr]m/
+[Aa][Rr]m64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*.ilk
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp.
+*.web
+*.xml
+*.xml. backup
+*.xsc
+*.ysc
+*.y
+*_i.h
+*.Loaders.cs
+
+# Visual Studio cache/options directory
+.vs/
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# Others
+*.[Cc]ache
+*.swp
+*.lnk
+*.lnk2
+*.user
+*.mrules
+*.mruleset
+*_i.c
+*_p.c
+ncrunch*
+*.dotCover
+*.mdb
+*.opensdf
+*.pdb
+*.pidb
+*.sln.ide
+*.user
+*.vc.db
+*.vscode/
+*.vsp
+*.vspx
+*.vspscc
+*.vssscc
+*.webinfo
+_atlminrepro.txt
+
+# Publishing
+*.pubxml
+*.pubxml.user
+
+# NuGet
+*.nupkg
+.nuget/packages/
+NuGet.config
+
+# Windows
+Thumbs.db
+Thumbs.db.md
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Linux
+*~
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# User-specific
+*.local

@@ -1,0 +1,65 @@
+@model AIPoweredSoftwareDevelopment.Models.CodeReview
+
+@{
+    ViewData["Title"] = "Create Code Review";
+}
+
+<div class="container">
+    <h1>Create Code Review</h1>
+    
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="ProjectId" class="control-label"></label>
+            <select asp-for="ProjectId" class="form-control" asp-items="@(new SelectList(ViewBag.Projects, "Id", "Name"))">
+                <option value="">Select Project</option>
+            </select>
+            <span asp-validation-for="ProjectId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CodeSnippet" class="control-label"></label>
+            <textarea asp-for="CodeSnippet" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="CodeSnippet" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReviewType" class="control-label"></label>
+            <select asp-for="ReviewType" class="form-control">
+                <option value="">Select Review Type</option>
+                <option value="Security">Security</option>
+                <option value="Performance">Performance</option>
+                <option value="Best Practices">Best Practices</option>
+                <option value="Bug Detection">Bug Detection</option>
+                <option value="Code Quality">Code Quality</option>
+            </select>
+            <span asp-validation-for="ReviewType" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Severity" class="control-label"></label>
+            <select asp-for="Severity" class="form-control">
+                <option value="">Select Severity</option>
+                <option value="Critical">Critical</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <span asp-validation-for="Severity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <select asp-for="Status" class="form-control">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>

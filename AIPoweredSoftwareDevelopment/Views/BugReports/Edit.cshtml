@@ -1,0 +1,62 @@
+@model AIPoweredSoftwareDevelopment.Models.BugReport
+
+@{
+    ViewData["Title"] = "Edit Bug Report";
+}
+
+<div class="container">
+    <h1>Edit Bug Report</h1>
+    
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="DetectedAt" />
+        
+        <div class="form-group">
+            <label asp-for="ProjectId" class="control-label"></label>
+            <select asp-for="ProjectId" class="form-control" asp-items="@(new SelectList(ViewBag.Projects, "Id", "Name"))">
+                <option value="">Select Project</option>
+            </select>
+            <span asp-validation-for="ProjectId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AiDetectionResult" class="control-label"></label>
+            <textarea asp-for="AiDetectionResult" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="AiDetectionResult" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Severity" class="control-label"></label>
+            <select asp-for="Severity" class="form-control">
+                <option value="">Select Severity</option>
+                <option value="Critical">Critical</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <span asp-validation-for="Severity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <select asp-for="Status" class="form-control">
+                <option value="Open">Open</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" asp-route-projectId="@Model.ProjectId" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>

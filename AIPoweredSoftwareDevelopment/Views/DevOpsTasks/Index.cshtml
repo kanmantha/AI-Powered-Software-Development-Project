@@ -1,0 +1,58 @@
+@model IEnumerable<AIPoweredSoftwareDevelopment.Models.DevOpsTask>
+
+@{
+    ViewData["Title"] = "DevOps Tasks";
+    var projectId = ViewBag.ProjectId as int?;
+    var projectName = ViewBag.ProjectName as string;
+}
+
+<div class="container">
+    <h1>DevOps Tasks</h1>
+    
+    @if (!string.IsNullOrEmpty(projectName))
+    {
+        <h4>Project: @projectName</h4>
+    }
+    
+    <p>
+        @if (projectId.HasValue)
+        {
+            <a asp-action="Create" asp-route-projectId="@projectId" class="btn btn-primary">Create New Task</a>
+            <a asp-controller="Projects" asp-action="Details" asp-route-id="@projectId" class="btn btn-secondary">Back to Project</a>
+        }
+        else
+        {
+            <a asp-action="Create" class="btn btn-primary">Create New Task</a>
+        }
+    </p>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Project</th>
+                <th>Task Type</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TaskName</td>
+                    <td>@item.Project?.Name</td>
+                    <td>@item.TaskType</td>
+                    <td><span class="badge bg-@(item.Status == "Completed" ? "success" : item.Status == "In Progress" ? "warning" : "secondary")">@item.Status</span></td>
+                    <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

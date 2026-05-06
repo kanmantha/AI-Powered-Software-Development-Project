@@ -1,0 +1,58 @@
+@model IEnumerable<AIPoweredSoftwareDevelopment.Models.TestCase>
+
+@{
+    ViewData["Title"] = "Test Cases";
+    var projectId = ViewBag.ProjectId as int?;
+    var projectName = ViewBag.ProjectName as string;
+}
+
+<div class="container">
+    <h1>Test Cases</h1>
+    
+    @if (!string.IsNullOrEmpty(projectName))
+    {
+        <h4>Project: @projectName</h4>
+    }
+    
+    <p>
+        @if (projectId.HasValue)
+        {
+            <a asp-action="Create" asp-route-projectId="@projectId" class="btn btn-primary">Generate New Test</a>
+            <a asp-controller="Projects" asp-action="Details" asp-route-id="@projectId" class="btn btn-secondary">Back to Project</a>
+        }
+        else
+        {
+            <a asp-action="Create" class="btn btn-primary">Generate New Test</a>
+        }
+    </p>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Test Name</th>
+                <th>Project</th>
+                <th>Test Type</th>
+                <th>Status</th>
+                <th>Generated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TestName</td>
+                    <td>@item.Project?.Name</td>
+                    <td>@item.TestType</td>
+                    <td><span class="badge bg-@(item.Status == "Passed" ? "success" : item.Status == "Failed" ? "danger" : "secondary")">@item.Status</span></td>
+                    <td>@item.GeneratedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
