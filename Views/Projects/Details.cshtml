@@ -1,0 +1,70 @@
+@model AIPoweredSoftwareDevelopment.Models.Project
+
+@{
+    ViewData["Title"] = "Project Details - " + Model.Name;
+}
+
+<div class="container">
+    <h1>Project Details</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text"><strong>Description:</strong> @Model.Description</p>
+            <p class="card-text"><strong>Technology:</strong> @Model.Technology</p>
+            <p class="card-text"><strong>Repository:</strong> <a href="@Model.RepositoryUrl">@Model.RepositoryUrl</a></p>
+            <p class="card-text"><strong>Created:</strong> @Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</p>
+            @if (Model.UpdatedAt.HasValue)
+            {
+                <p class="card-text"><strong>Updated:</strong> @Model.UpdatedAt.Value.ToString("yyyy-MM-dd HH:mm")</p>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h3>AI-Powered Features</h3>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Code Reviews</h5>
+                        <p class="card-text">@Model.CodeReviews.Count() reviews</p>
+                        <a asp-controller="CodeReviews" asp-action="Index" asp-route-projectId="@Model.Id" class="btn btn-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Bug Reports</h5>
+                        <p class="card-text">@Model.BugReports.Count() bugs</p>
+                        <a asp-controller="BugReports" asp-action="Index" asp-route-projectId="@Model.Id" class="btn btn-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Test Cases</h5>
+                        <p class="card-text">@Model.TestCases.Count() tests</p>
+                        <a asp-controller="TestCases" asp-action="Index" asp-route-projectId="@Model.Id" class="btn btn-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">DevOps Tasks</h5>
+                        <p class="card-text">@Model.DevOpsTasks.Count() tasks</p>
+                        <a asp-controller="DevOpsTasks" asp-action="Index" asp-route-projectId="@Model.Id" class="btn btn-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

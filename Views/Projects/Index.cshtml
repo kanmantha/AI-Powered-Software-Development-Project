@@ -1,0 +1,39 @@
+@model IEnumerable<AIPoweredSoftwareDevelopment.Models.Project>
+
+@{
+    ViewData["Title"] = "Projects - AI Powered Software Development";
+}
+
+<div class="container">
+    <h1>AI-Powered Software Development Projects</h1>
+    
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New Project</a>
+    </p>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Technology</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Technology</td>
+                    <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

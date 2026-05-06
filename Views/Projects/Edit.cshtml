@@ -1,0 +1,48 @@
+@model AIPoweredSoftwareDevelopment.Models.Project
+
+@{
+    ViewData["Title"] = "Edit Project";
+}
+
+<div class="container">
+    <h1>Edit Project</h1>
+    
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedAt" />
+        
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RepositoryUrl" class="control-label"></label>
+            <input asp-for="RepositoryUrl" class="form-control" />
+            <span asp-validation-for="RepositoryUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Technology" class="control-label"></label>
+            <select asp-for="Technology" class="form-control">
+                <option value="">Select Technology</option>
+                <option value="GitHub Copilot">GitHub Copilot</option>
+                <option value="Claude Code">Claude Code</option>
+                <option value="Cursor AI">Cursor AI</option>
+                <option value="OpenAI Codex">OpenAI Codex</option>
+                <option value="Azure DevOps">Azure DevOps</option>
+                <option value="Other">Other</option>
+            </select>
+            <span asp-validation-for="Technology" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>

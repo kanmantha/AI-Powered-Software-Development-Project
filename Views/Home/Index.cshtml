@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "AI-Powered Software Development";
+}
+
+<div class="container">
+    <div class="jumbotron bg-light p-5 rounded">
+        <h1 class="display-4">AI-Powered Software Development</h1>
+        <p class="lead">Automating software development workflows using AI agents</p>
+        <hr class="my-4">
+        <p>Manage projects, code reviews, bug detection, test generation, and DevOps tasks with AI assistance.</p>
+        <a asp-controller="Projects" asp-action="Index" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Projects</h5>
+                    <p class="card-text display-4">@ViewBag.ProjectCount</p>
+                    <a asp-controller="Projects" asp-action="Index" class="btn btn-light btn-sm">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Code Reviews</h5>
+                    <p class="card-text display-4">@ViewBag.CodeReviewCount</p>
+                    <a asp-controller="CodeReviews" asp-action="Index" class="btn btn-light btn-sm">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Bug Reports</h5>
+                    <p class="card-text display-4">@ViewBag.BugReportCount</p>
+                    <a asp-controller="BugReports" asp-action="Index" class="btn btn-light btn-sm">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Test Cases</h5>
+                    <p class="card-text display-4">@ViewBag.TestCaseCount</p>
+                    <a asp-controller="TestCases" asp-action="Index" class="btn btn-light btn-sm">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Recent Projects</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.RecentProjects != null && ((System.Collections.IList)ViewBag.RecentProjects).Count > 0)
+                    {
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Technology</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var project in ViewBag.RecentProjects)
+                                {
+                                    <tr>
+                                        <td>@project.Name</td>
+                                        <td>@project.Technology</td>
+                                        <td>@project.CreatedAt.ToString("yyyy-MM-dd")</td>
+                                        <td>
+                                            <a asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id" class="btn btn-info btn-sm">Details</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No projects yet. <a asp-controller="Projects" asp-action="Create">Create your first project</a>.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>AI Technologies Supported</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2 text-center">
+                            <h6>GitHub Copilot</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <h6>Claude Code</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <h6>Cursor AI</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <h6>OpenAI Codex</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <h6>Azure DevOps</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <h6>Custom AI</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

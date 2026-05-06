@@ -1,0 +1,54 @@
+@model AIPoweredSoftwareDevelopment.Models.TestCase
+
+@{
+    ViewData["Title"] = "Generate Test Case";
+}
+
+<div class="container">
+    <h1>Generate Test Case</h1>
+    
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="ProjectId" class="control-label"></label>
+            <select asp-for="ProjectId" class="form-control" asp-items="@(new SelectList(ViewBag.Projects, "Id", "Name"))">
+                <option value="">Select Project</option>
+            </select>
+            <span asp-validation-for="ProjectId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TestName" class="control-label"></label>
+            <input asp-for="TestName" class="form-control" />
+            <span asp-validation-for="TestName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TestDescription" class="control-label"></label>
+            <textarea asp-for="TestDescription" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="TestDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TestType" class="control-label"></label>
+            <select asp-for="TestType" class="form-control">
+                <option value="">Select Test Type</option>
+                <option value="Unit Test">Unit Test</option>
+                <option value="Integration Test">Integration Test</option>
+                <option value="Functional Test">Functional Test</option>
+                <option value="Performance Test">Performance Test</option>
+                <option value="Security Test">Security Test</option>
+            </select>
+            <span asp-validation-for="TestType" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <select asp-for="Status" class="form-control">
+                <option value="Not Run">Not Run</option>
+                <option value="Passed">Passed</option>
+                <option value="Failed">Failed</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <input type="submit" value="Generate" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
