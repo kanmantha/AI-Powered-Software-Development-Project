@@ -4,10 +4,19 @@
     ViewData["Title"] = "Create New Project";
 }
 
+@model AIPoweredSoftwareDevelopment.Models.Project
+
+@{
+    ViewData["Title"] = "Create New Project";
+}
+
 <div class="container">
     <h1>Create New Project</h1>
     
     <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        
         <div class="form-group">
             <label asp-for="Name" class="control-label"></label>
             <input asp-for="Name" class="form-control" />
@@ -32,7 +41,7 @@
                 <option value="Cursor AI">Cursor AI</option>
                 <option value="OpenAI Codex">OpenAI Codex</option>
                 <option value="Azure DevOps">Azure DevOps</option>
-                <option value="Other">Other</option>
+                <option value="Custom AI">Custom AI</option>
             </select>
             <span asp-validation-for="Technology" class="text-danger"></span>
         </div>
